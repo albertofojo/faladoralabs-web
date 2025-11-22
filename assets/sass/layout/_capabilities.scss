@@ -1,0 +1,119 @@
+///
+/// Faladora Labs S.L. - Capabilities Section
+/// Feature Cards Grid Design
+///
+
+/* Capabilities Section */
+
+	#capabilities {
+		background-color: #36464b;
+		padding: 6em 0;
+
+		.inner {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 0 2em;
+		}
+
+		h2 {
+			text-align: center;
+			margin-bottom: 3em;
+			color: #ffffff;
+			font-size: 2.5rem;
+		}
+
+		.capabilities-grid {
+			@include vendor('display', 'grid');
+			grid-template-columns: repeat(3, 1fr);
+			gap: 2em;
+		}
+
+		.capability-card {
+			background-color: rgba(255, 255, 255, 0.05);
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			border-radius: 4px;
+			padding: 2.5em;
+			text-align: center;
+			@include vendor('transition', 'all #{_duration(transition)} ease');
+
+			&:hover {
+				border-color: #4fd6a6;
+				@include vendor('transform', 'translateY(-5px)');
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+			}
+
+			&-icon {
+				margin-bottom: 1.5em;
+
+				.icon {
+					font-size: 3rem;
+					color: #4fd6a6;
+					margin: 0;
+
+					&.major {
+						background: transparent;
+						border-radius: 0;
+						width: auto;
+						height: auto;
+						line-height: 1;
+						margin: 0;
+
+						&:before {
+							color: #4fd6a6;
+						}
+					}
+				}
+			}
+
+			h3 {
+				color: #ffffff;
+				font-weight: bold;
+				margin: 0 0 1em 0;
+				font-size: 1.25rem;
+			}
+
+			p {
+				color: #e0e0e0;
+				font-size: 0.95rem;
+				line-height: 1.6;
+				margin: 0;
+			}
+		}
+
+		@include breakpoint('<=medium') {
+			padding: 4em 0;
+
+			.capabilities-grid {
+				grid-template-columns: repeat(2, 1fr);
+				gap: 1.5em;
+			}
+		}
+
+		@include breakpoint('<=small') {
+			padding: 3em 0;
+
+			.inner {
+				padding: 0 1.5em;
+			}
+
+			h2 {
+				margin-bottom: 2em;
+				font-size: 2rem;
+			}
+
+			.capabilities-grid {
+				grid-template-columns: 1fr;
+				gap: 1.5em;
+			}
+
+			.capability-card {
+				padding: 2em;
+			}
+		}
+	}
+
+	/* Override wrapper background for capabilities section */
+	#capabilities.wrapper.style3 {
+		background-color: #36464b;
+	}
+

@@ -1,0 +1,100 @@
+///
+/// Faladora Labs S.L. - About Section
+/// Engineering/Blueprint Aesthetic Design
+///
+
+/* About Section */
+
+	#about {
+		background-color: #36464b;
+		padding: 6em 0;
+
+		.inner {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 0 2em;
+		}
+
+		h2 {
+			text-align: center;
+			margin-bottom: 3em;
+			color: #ffffff;
+		}
+
+		.about-grid {
+			@include vendor('display', 'grid');
+			grid-template-columns: 1fr 1fr;
+			gap: 2em;
+		}
+
+		.about-card {
+			background-color: transparent;
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			padding: 2.5em;
+			position: relative;
+			@include vendor('transition', 'border-color #{_duration(transition)} ease');
+
+			&:hover {
+				border-color: rgba(255, 255, 255, 0.2);
+			}
+
+			&-accent {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 3px;
+				background-color: #4fd6a6;
+			}
+
+			h3 {
+				font-size: 0.9rem;
+				font-weight: bold;
+				text-transform: uppercase;
+				letter-spacing: 0.15em;
+				color: #ffffff;
+				margin: 0 0 1.5em 0;
+			}
+
+			p {
+				color: #e0e0e0;
+				line-height: 1.7;
+				margin: 0;
+			}
+		}
+
+		@include breakpoint('<=medium') {
+			padding: 4em 0;
+
+			.about-grid {
+				grid-template-columns: 1fr;
+				gap: 2em;
+			}
+		}
+
+		@include breakpoint('<=small') {
+			padding: 3em 0;
+
+			.inner {
+				padding: 0 1.5em;
+			}
+
+			h2 {
+				margin-bottom: 2em;
+			}
+
+			.about-grid {
+				gap: 1.5em;
+			}
+
+			.about-card {
+				padding: 2em;
+			}
+		}
+	}
+
+	/* Override wrapper background for about section */
+	#about.wrapper.style2 {
+		background-color: #36464b;
+	}
+

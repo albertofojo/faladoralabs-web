@@ -1,0 +1,106 @@
+///
+/// Faladora Labs S.L. - Footer Section
+/// Simple Footer with Legal Links
+///
+
+/* Footer */
+
+	#footer {
+		background-color: #2c393d;
+		padding: 2em 0;
+
+		#sidebar + #wrapper + & {
+			margin-left: _size(sidebar-width);
+
+			@include breakpoint('<=large') {
+				margin-left: 0;
+			}
+		}
+
+		.inner {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 0 2em;
+		}
+
+		.footer-content {
+			@include vendor('display', 'flex');
+			@include vendor('flex-direction', 'row');
+			@include vendor('justify-content', 'space-between');
+			@include vendor('align-items', 'center');
+			flex-wrap: wrap;
+			gap: 1em;
+		}
+
+			.copyright {
+				font-size: 0.8rem;
+				color: #888;
+				margin: 0;
+			}
+
+			.legal-links {
+				@include vendor('display', 'flex');
+				@include vendor('flex-direction', 'row');
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				gap: 1.5em;
+
+				li {
+					margin: 0;
+					padding: 0;
+				}
+
+				a {
+					font-size: 0.8rem;
+					color: #888;
+					text-decoration: none;
+					@include vendor('transition', 'color #{_duration(transition)} ease');
+
+					&:hover {
+						color: #ffffff;
+					}
+				}
+			}
+
+			.html5up-credit {
+				font-size: 0.7rem;
+				color: #888;
+				text-align: center;
+				margin: 1.5em 0 0 0;
+				opacity: 0.5;
+				@include vendor('transition', 'opacity #{_duration(transition)} ease');
+
+				&:hover {
+					opacity: 1;
+				}
+
+				a {
+					color: #888;
+					text-decoration: none;
+					@include vendor('transition', 'color #{_duration(transition)} ease');
+
+					&:hover {
+						color: #4fd6a6;
+					}
+				}
+			}
+
+		@include breakpoint('<=small') {
+			.footer-content {
+				@include vendor('flex-direction', 'column');
+				text-align: center;
+			}
+
+			.legal-links {
+				@include vendor('flex-direction', 'column');
+				gap: 0.5em;
+			}
+		}
+
+		#header + #wrapper + & {
+			> .inner {
+				margin: 0 auto;
+			}
+		}
+	}
