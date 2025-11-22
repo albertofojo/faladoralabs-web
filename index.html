@@ -21,7 +21,12 @@
 				<div class="logo">
 					<img src="images/logo.png" alt="Faladora Labs S.L." />
 				</div>
-				<nav>
+				<button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
+				<nav id="main-nav">
 					<ul>
 						<li><a href="#intro">Inicio</a></li>
 						<li><a href="#about">Sobre Nós</a></li>
@@ -45,12 +50,6 @@
 					</h1>
 					<div class="hero-accent-line"></div>
 					<p class="hero-subtitle">Transformamos a tradición cultural en datos medibles. Deseño de hardware IoT e solucións de software para a preservación e evolución da música.</p>
-				</div>
-				<!-- Scroll Indicator -->
-				<div class="scroll-indicator">
-					<a href="#about" class="scrolly">
-						<span class="chevron"></span>
-					</a>
 				</div>
 			</section>
 
@@ -165,7 +164,7 @@
 						</div>
 						<!-- Contact Form -->
 						<div class="contact-form-wrapper">
-							<form action="https://formsubmit.co/info@faladoralabs.com" method="POST" class="contact-form">
+							<form action="https://formsubmit.co/Info@faladoralabs.com" method="POST" class="contact-form">
 								<input type="hidden" name="_subject" value="Nova consulta desde Faladora Labs" />
 								<input type="hidden" name="_captcha" value="false" />
 								<input type="hidden" name="_next" value="https://faladoralabs.com/gracias.html" />
@@ -377,6 +376,32 @@
 				}
 			}
 		</style>
+
+		<script>
+			// Mobile Menu Toggle
+			(function() {
+				const menuToggle = document.getElementById('menu-toggle');
+				const mainNav = document.getElementById('main-nav');
+
+				if (menuToggle && mainNav) {
+					menuToggle.addEventListener('click', function() {
+						menuToggle.classList.toggle('active');
+						mainNav.classList.toggle('active');
+					});
+
+					// Close menu when clicking on a navigation link (mobile only)
+					const navLinks = mainNav.querySelectorAll('a[href^="#"]');
+					navLinks.forEach(function(link) {
+						link.addEventListener('click', function() {
+							if (window.innerWidth <= 736) {
+								menuToggle.classList.remove('active');
+								mainNav.classList.remove('active');
+							}
+						});
+					});
+				}
+			})();
+		</script>
 
 		<script>
 			// Cookie Consent Management

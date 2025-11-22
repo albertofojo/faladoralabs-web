@@ -3970,6 +3970,58 @@ input, select, textarea {
 
 		}
 
+		/* Hamburger Menu Button */
+		.menu-toggle {
+			display: none;
+			background: transparent;
+			border: none;
+			cursor: pointer;
+			padding: 0.5em;
+			position: absolute;
+			top: 1.5em;
+			right: 1em;
+			z-index: 10001;
+			-moz-transition: all 0.3s ease;
+			-webkit-transition: all 0.3s ease;
+			-ms-transition: all 0.3s ease;
+			transition: all 0.3s ease;
+		}
+
+			.menu-toggle span {
+				display: block;
+				width: 25px;
+				height: 3px;
+				background-color: #ffffff;
+				margin: 5px 0;
+				-moz-transition: all 0.3s ease;
+				-webkit-transition: all 0.3s ease;
+				-ms-transition: all 0.3s ease;
+				transition: all 0.3s ease;
+				border-radius: 2px;
+			}
+
+			.menu-toggle:hover span {
+				background-color: #4fd6a6;
+			}
+
+			.menu-toggle.active span:nth-child(1) {
+				-moz-transform: rotate(45deg) translate(8px, 8px);
+				-webkit-transform: rotate(45deg) translate(8px, 8px);
+				-ms-transform: rotate(45deg) translate(8px, 8px);
+				transform: rotate(45deg) translate(8px, 8px);
+			}
+
+			.menu-toggle.active span:nth-child(2) {
+				opacity: 0;
+			}
+
+			.menu-toggle.active span:nth-child(3) {
+				-moz-transform: rotate(-45deg) translate(7px, -7px);
+				-webkit-transform: rotate(-45deg) translate(7px, -7px);
+				-ms-transform: rotate(-45deg) translate(7px, -7px);
+				transform: rotate(-45deg) translate(7px, -7px);
+			}
+
 		@media screen and (max-width: 736px) {
 
 			#sidebar {
@@ -3990,6 +4042,7 @@ input, select, textarea {
 					-ms-justify-content: flex-start;
 					justify-content: flex-start;
 					min-height: auto;
+					position: relative;
 				}
 
 				#sidebar .logo {
@@ -4002,16 +4055,35 @@ input, select, textarea {
 						max-height: 100px;
 					}
 
+				.menu-toggle {
+					display: block;
+				}
+
 				#sidebar nav {
 					height: auto;
 					line-height: normal;
+					max-height: 0;
+					overflow: hidden;
+					-moz-transition: max-height 0.3s ease-out;
+					-webkit-transition: max-height 0.3s ease-out;
+					-ms-transition: max-height 0.3s ease-out;
+					transition: max-height 0.3s ease-out;
 				}
+
+					#sidebar nav.active {
+						max-height: 1000px;
+						-moz-transition: max-height 0.5s ease-in;
+						-webkit-transition: max-height 0.5s ease-in;
+						-ms-transition: max-height 0.5s ease-in;
+						transition: max-height 0.5s ease-in;
+					}
 
 					#sidebar nav ul {
 						display: block;
 						height: auto;
 						line-height: normal;
 						margin: 0;
+						padding-top: 1em;
 					}
 
 						#sidebar nav ul li {
@@ -4027,10 +4099,26 @@ input, select, textarea {
 						}
 
 						#sidebar nav ul li.lang-switcher {
-							margin-top: 1.5em;
-							padding-top: 1.5em;
+							margin-top: 2.5em;
+							padding-top: 2em;
 							border-top: 1px solid rgba(255, 255, 255, 0.1);
+							text-align: center;
+							width: 100%;
+							display: block;
+							margin-left: 0;
+							margin-right: 0;
 						}
+
+							#sidebar nav ul li.lang-switcher,
+							#sidebar nav ul li.lang-switcher span,
+							#sidebar nav ul li.lang-switcher a {
+								font-size: 0.75em;
+							}
+
+							#sidebar nav ul li.lang-switcher span,
+							#sidebar nav ul li.lang-switcher a {
+								display: inline;
+							}
 
 					#sidebar nav a {
 						height: auto;
@@ -4325,11 +4413,13 @@ input, select, textarea {
 
 		@media screen and (max-width: 736px) {
 			#intro {
-				padding: 2em 1.5em;
+				padding: 1em 1.5em 2em 1.5em;
+				min-height: auto;
 			}
 
 			#intro .hero-title {
 				font-size: 2rem;
+				margin-top: 0;
 			}
 
 			#intro .hero-subtitle {
@@ -4340,6 +4430,10 @@ input, select, textarea {
 			#intro .hero-accent-line {
 				width: 60px;
 				height: 2px;
+			}
+
+			#intro .scroll-indicator {
+				display: none;
 			}
 		}
 
