@@ -3825,6 +3825,50 @@ input, select, textarea {
 					max-width: 100%;
 				}
 
+		/* Language Switcher Styles */
+		#sidebar nav .lang-switcher {
+			margin-top: 2em;
+			padding-top: 1.5em;
+			border-top: 1px solid rgba(255, 255, 255, 0.1);
+		}
+
+			#sidebar nav .lang-switcher,
+			#sidebar nav .lang-switcher span,
+			#sidebar nav .lang-switcher a {
+				display: inline;
+				font-size: 0.6em;
+				font-weight: bold;
+				letter-spacing: 0.25em;
+				text-transform: uppercase;
+				color: rgba(255, 255, 255, 0.35);
+				-moz-transition: color 0.2s ease;
+				-webkit-transition: color 0.2s ease;
+				-ms-transition: color 0.2s ease;
+				transition: color 0.2s ease;
+			}
+
+			#sidebar nav .lang-switcher .lang-active {
+				color: #ffffff;
+				font-weight: bold;
+			}
+
+			#sidebar nav .lang-switcher a {
+				opacity: 0.7;
+				text-decoration: none;
+				border: 0;
+				padding: 0;
+			}
+
+				#sidebar nav .lang-switcher a:hover {
+					color: #4fd6a6;
+					opacity: 1;
+				}
+
+				#sidebar nav .lang-switcher a:before,
+				#sidebar nav .lang-switcher a:after {
+					display: none;
+				}
+
 		body.is-preload #sidebar > .inner {
 			opacity: 0;
 		}
@@ -3906,6 +3950,13 @@ input, select, textarea {
 							padding: 0;
 						}
 
+						#sidebar nav ul li.lang-switcher {
+							margin-left: 2em;
+							margin-top: 0;
+							padding-top: 0;
+							border-top: none;
+						}
+
 					#sidebar nav a {
 						height: inherit;
 						line-height: inherit;
@@ -3971,9 +4022,15 @@ input, select, textarea {
 							padding: 0;
 						}
 
-							#sidebar nav ul li:first-child {
-								margin-top: 0;
-							}
+						#sidebar nav ul li:first-child {
+							margin-top: 0;
+						}
+
+						#sidebar nav ul li.lang-switcher {
+							margin-top: 1.5em;
+							padding-top: 1.5em;
+							border-top: 1px solid rgba(255, 255, 255, 0.1);
+						}
 
 					#sidebar nav a {
 						height: auto;
