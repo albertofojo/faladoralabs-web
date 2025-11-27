@@ -158,16 +158,20 @@
 						<div class="contact-info">
 							<div class="contact-block">
 								<h3>Faladora Labs S.L.</h3>
-								<p>Estrada de Viveiro 62, 15337 O Barqueiro, Mañón, A Coruña</p>
-								<p><a href="mailto:info@faladoralabs.com">info@faladoralabs.com</a></p>
+								<p>Utiliza o formulario para enviarnos unha mensaxe personalizada. Responderemos no menor tempo posible.</p>
+								<p>Se necesitas escribirnos directamente, podes facelo en <a class="email-link" data-user="info" data-domain="faladoralabs.com" rel="nofollow"></a>.</p>
 							</div>
 						</div>
 						<!-- Contact Form -->
 						<div class="contact-form-wrapper">
-							<form action="https://formsubmit.co/Info@faladoralabs.com" method="POST" class="contact-form">
+							<form id="contact-form" action="https://formsubmit.co/info@faladoralabs.com" method="POST" class="contact-form" novalidate>
 								<input type="hidden" name="_subject" value="Nova consulta desde Faladora Labs" />
-								<input type="hidden" name="_captcha" value="false" />
-								<input type="hidden" name="_next" value="https://faladoralabs.com/gracias.html" />
+								<input type="hidden" name="_captcha" value="true" />
+								<input type="hidden" name="_next" value="https://faladoralabs.com/grazas.html" />
+								<div class="honeypot-field" aria-hidden="true">
+									<label for="contact-company">Compañía</label>
+									<input type="text" name="company" id="contact-company" tabindex="-1" autocomplete="off" />
+								</div>
 								
 								<div class="form-field">
 									<input type="text" name="name" id="contact-name" placeholder="Nome" required />
@@ -178,7 +182,12 @@
 								<div class="form-field">
 									<textarea name="message" id="contact-message" placeholder="Mensaxe" rows="5" required></textarea>
 								</div>
+								<div class="form-field">
+									<label for="contact-quiz">Verificación humana: <span id="contact-quiz-question"></span></label>
+									<input type="text" name="quiz_answer" id="contact-quiz" placeholder="Introduce o resultado" inputmode="numeric" autocomplete="off" required />
+								</div>
 								<button type="submit" class="submit-button">Enviar Solicitude</button>
+								<p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
 							</form>
 						</div>
 					</div>
@@ -210,6 +219,79 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				var contactForm = document.getElementById('contact-form');
+				var emailLinks = document.querySelectorAll('.email-link');
+
+				emailLinks.forEach(function (link) {
+					var user = link.getAttribute('data-user');
+					var domain = link.getAttribute('data-domain');
+					if (!user || !domain) return;
+
+					var email = user + '@' + domain;
+					link.textContent = email;
+					link.setAttribute('href', 'mailto:' + email);
+				});
+
+				if (!contactForm) return;
+
+				var honeypotInput = document.getElementById('contact-company');
+				var statusEl = document.getElementById('contact-status');
+				var submitBtn = contactForm.querySelector('button[type="submit"]');
+				var quizQuestionEl = document.getElementById('contact-quiz-question');
+				var quizInput = document.getElementById('contact-quiz');
+				var MIN_DELAY_MS = 4000;
+				var formStartTime = Date.now();
+				var quizSolution = null;
+
+				function generateQuiz() {
+					if (!quizQuestionEl) return;
+					var a = Math.floor(Math.random() * 7) + 2; // 2-8
+					var b = Math.floor(Math.random() * 7) + 1; // 1-7
+					quizSolution = a + b;
+					quizQuestionEl.textContent = a + ' + ' + b + ' = ?';
+					if (quizInput) {
+						quizInput.value = '';
+					}
+				}
+
+				generateQuiz();
+
+				contactForm.addEventListener('submit', function (event) {
+					statusEl.classList.remove('is-error', 'is-warning');
+
+					if (honeypotInput && honeypotInput.value.trim() !== '') {
+						event.preventDefault();
+						statusEl.textContent = 'Non se puido enviar. Por favor, completa só os campos visibles.';
+						statusEl.classList.add('is-error');
+						return;
+					}
+
+					if (Date.now() - formStartTime < MIN_DELAY_MS) {
+						event.preventDefault();
+						statusEl.textContent = 'Por favor, revisa a mensaxe antes de enviala.';
+						statusEl.classList.add('is-warning');
+						return;
+					}
+
+					if (quizInput && quizSolution !== null) {
+						var userAnswer = parseInt(quizInput.value, 10);
+						if (isNaN(userAnswer) || userAnswer !== quizSolution) {
+							event.preventDefault();
+							statusEl.textContent = 'Resposta incorrecta. Téntao de novo.';
+							statusEl.classList.add('is-error');
+							generateQuiz();
+							return;
+						}
+					}
+
+					submitBtn.classList.add('is-loading');
+					submitBtn.disabled = true;
+					statusEl.textContent = 'Enviando...';
+				});
+			});
+		</script>
 
 		<!-- Cookie Consent Banner -->
 		<div id="cookie-banner" style="display: none;">

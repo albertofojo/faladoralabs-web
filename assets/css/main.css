@@ -4780,6 +4780,17 @@ input, select, textarea {
 				margin: 0 0 1em 0;
 			}
 
+			#contact .contact-block .email-link {
+				color: #4fd6a6;
+				font-weight: 600;
+				text-decoration: underline;
+				word-break: break-word;
+			}
+
+				#contact .contact-block .email-link:hover {
+					color: #d8fff2;
+				}
+
 			#contact .contact-block a {
 				color: #4fd6a6;
 				text-decoration: none;
@@ -4798,6 +4809,7 @@ input, select, textarea {
 			-webkit-flex: 1;
 			-ms-flex: 1;
 			flex: 1;
+			position: relative;
 		}
 
 			#contact .contact-form {
@@ -4811,6 +4823,14 @@ input, select, textarea {
 				flex-direction: column;
 				gap: 1.5em;
 			}
+
+				#contact .form-field label {
+					display: block;
+					margin-bottom: 0.5em;
+					color: #cfd9d7;
+					font-weight: 600;
+					font-size: 0.95rem;
+				}
 
 				#contact .form-field input,
 				#contact .form-field textarea {
@@ -4879,6 +4899,35 @@ input, select, textarea {
 					box-sizing: border-box;
 				}
 
+				#contact .submit-button.is-loading {
+					opacity: 0.6;
+					cursor: not-allowed;
+				}
+
+		#contact .honeypot-field {
+			position: absolute;
+			left: -10000px;
+			top: auto;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+		}
+
+		#contact .form-status {
+			min-height: 1.5em;
+			margin: 0;
+			color: #c2f1df;
+			font-size: 0.95rem;
+		}
+
+			#contact .form-status.is-error {
+				color: #ff8f8f;
+			}
+
+			#contact .form-status.is-warning {
+				color: #ffc77d;
+			}
+
 					#contact .submit-button:hover {
 						background-color: transparent;
 						color: #4fd6a6;
@@ -4946,6 +4995,80 @@ input, select, textarea {
 	#footer {
 		background-color: #2c393d;
 		padding: 2em 0;
+	}
+
+	/* Thank You Page */
+	.thank-you-wrapper {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		background-color: #253033;
+	}
+
+		.thank-you-section {
+			padding: 6em 0;
+		}
+
+			.thank-you-card {
+				max-width: 640px;
+				margin: 0 auto;
+				text-align: center;
+				background-color: rgba(255, 255, 255, 0.03);
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 16px;
+				padding: 3em;
+				box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+			}
+
+				.thank-you-card h1 {
+					font-size: 2.2rem;
+					margin-bottom: 1em;
+					color: #ffffff;
+				}
+
+				.thank-you-card p {
+					color: #e0e0e0;
+					line-height: 1.7;
+					margin-bottom: 2.5em;
+				}
+
+				.thank-you-card .button.primary {
+					padding: 1em 2.5em;
+					background-color: #4fd6a6;
+					color: #0b1c21;
+					border-radius: 999px;
+					font-weight: bold;
+					letter-spacing: 0.08em;
+				}
+
+					.thank-you-card .button.primary:hover {
+						background-color: transparent;
+						border: 2px solid #4fd6a6;
+						color: #4fd6a6;
+					}
+
+				.thank-you-icon {
+					width: 80px;
+					height: 80px;
+					margin: 0 auto 1.5em;
+					border-radius: 50%;
+					background: linear-gradient(135deg, #4fd6a6, #53e2ba);
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					color: #0b1c21;
+					font-size: 2.5rem;
+				}
+
+	.thank-you-footer {
+		text-align: center;
+	}
+
+	@media screen and (max-width: 736px) {
+		.thank-you-card {
+			padding: 2em;
+		}
 	}
 
 		#footer .inner {
